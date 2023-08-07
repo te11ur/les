@@ -1,0 +1,1 @@
+export const isArrayBuffer = value => value instanceof ArrayBuffer;

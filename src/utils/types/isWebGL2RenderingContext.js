@@ -1,0 +1,1 @@
+export const isWebGL2RenderingContext = value => value instanceof WebGL2RenderingContext;

@@ -1,0 +1,1 @@
+export const isHTMLImageElement = value => value instanceof HTMLImageElement;

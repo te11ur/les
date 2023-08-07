@@ -1,0 +1,1 @@
+export const isUint16Array = value => value instanceof Uint16Array;

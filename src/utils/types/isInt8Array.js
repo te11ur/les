@@ -1,0 +1,1 @@
+export const isInt8Array = value => value instanceof Int8Array;

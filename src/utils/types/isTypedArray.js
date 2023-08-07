@@ -1,0 +1,1 @@
+export const isTypedArray = value => ArrayBuffer.isView(value) && !(value instanceof DataView);

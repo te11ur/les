@@ -1,0 +1,1 @@
+export const assign = (...args) => Object.assign.apply(null, args);

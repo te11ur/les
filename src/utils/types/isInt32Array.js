@@ -1,0 +1,1 @@
+export const isInt32Array = value => value instanceof Int32Array;

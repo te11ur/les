@@ -1,0 +1,38 @@
+# sublime text files
+*.sublime*
+*.*~*.TMP
+
+# temp files
+tmp
+.DS_Store
+Thumbs.db
+Desktop.ini
+npm-debug.log
+lerna-debug.log
+
+# vim swap files
+*.sw*
+
+# emacs temp files
+*~
+\#*#
+
+# project ignores
+!.gitkeep
+*__temp
+node_modules
+release
+
+*_compressed.gltf
+*_compressed.bin
+*_compressed.mp3
+*_compressed.mp4
+*_compressed.webp
+
+# jetBrains IDE ignores
+*.iml
+*.ipr
+*.iws
+
+.idea
+*.meta

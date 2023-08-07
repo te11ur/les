@@ -1,0 +1,1 @@
+export const each = (map, fn) => Object.keys(map).forEach(key => fn(map[key], key));

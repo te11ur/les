@@ -1,0 +1,1 @@
+export const isImageBitmap = value => value instanceof ImageBitmap;

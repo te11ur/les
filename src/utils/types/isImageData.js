@@ -1,0 +1,1 @@
+export const isImageData = value => value instanceof ImageData;
