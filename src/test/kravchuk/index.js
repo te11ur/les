@@ -163,6 +163,8 @@ class DoublyLinkedList {
   }
 }
 
+const list = new DoublyLinkedList();
+
 function addItem() {
   console.log('\n---Add Item---');
 
