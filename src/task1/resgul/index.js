@@ -5,12 +5,11 @@ WRAPPER.name = 'WRAPPER';
 
 // {id, next,prev,children,parent}
 class Node {
-  id = 0;
   parent = null;
   children = [];
 
   constructor(parent) {
-    this.id = newID();
+    this._id = newID();
     this.name = `node_` + this.id;
     // определение родителя
     if (parent) {
@@ -76,6 +75,10 @@ class Node {
     return prevElement;
   };
 
+  get id() {
+    return this._id;
+  };
+
   each(cb) {
     for (let i = 0; i < this.children.length; i++) {
       const child = this.children[i];
@@ -97,6 +100,8 @@ node0.remove(node1);
 node4.each((child, i) => {
   console.log('each_test: ', child.name, i);
 })
+
+// node0.id = 37;
 
 console.log('node4_children: ', node4.children);
 console.log('prev_of_node3: ', node3.prev);
