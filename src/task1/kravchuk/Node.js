@@ -19,8 +19,13 @@ export class Node {
   add(...children) {
     children.forEach((child) => {
       const nextChild = this.children;
+
+      if (nextChild) {
+        nextChild.prev = child;
+        child.next = nextChild;
+      }
+
       this.children = child;
-      child.next = nextChild;
       child.parent = this;
     });
   }
@@ -28,10 +33,8 @@ export class Node {
   removeSelf() {
     const { next, prev, parent } = this;
 
-    console.log(next, prev, parent);
-
     if (!prev) {
-      // этот первый — следуюзий становится первым
+      // этот первый — следующий становится первым
       if (parent.children === this) {
         parent.children = next;
         return this;
@@ -41,7 +44,7 @@ export class Node {
       throw Error("don't have prev and isn't first");
     }
 
-    // нету следующего — у предыдузего обнуляем next
+    // нету следующего — у предыдущего обнуляем next
     if (!next) {
       prev.next = null;
       return this;
@@ -57,6 +60,8 @@ export class Node {
    * @param {number|Node} child - child id or child itself
    */
   removeChild(child) {
+    if (!(child instanceof Node)) throw Error('child should be instanceof Node');
+
     if (isNumber(child)) {
       let targetNode;
     } else {
@@ -76,6 +81,25 @@ export class Node {
     if (!isFunction(fn)) throw Error('argument must be a function');
 
     eachNode(this.children, fn);
+  }
+
+  reverseChildren() {
+    let current = this.children;
+    let next, prev;
+
+    do {
+      next = current.next;
+      prev = current.prev;
+
+      current.prev = next;
+      current.next = prev;
+
+      if (next) {
+        current = next;
+      }
+    } while (next);
+
+    this.children = current;
   }
 }
 
