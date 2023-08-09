@@ -11,6 +11,10 @@
     "task1:resgul:prod": "webpack --mode production --config build/webpack.resources.js",
     "task1:resgul:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
+    "task1:parfionov:prod": "webpack --mode production --config build/webpack.resources.js",
+    "task1:parfionov:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+
     "task1:kravchuk:prod": "webpack --mode production --config build/webpack.resources.js",
     "task1:kravchuk:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
