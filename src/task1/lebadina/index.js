@@ -31,6 +31,7 @@ rootNode.add(сhildNode2, сhildNode3, сhildNode13);
 document.body.style.width = '100%';
 document.body.style.height = '100%';
 document.body.style.position = 'relative';
+const clearRender = () => document.body.innerHTML = '';
 
 //add(...args) - добавляет в ноду чайлов, в связанный лист
 //remove(id) - на parent (любой вложенности)
@@ -38,10 +39,20 @@ document.body.style.position = 'relative';
 //each(cb) - первый уровень чайлдов
 //traverse(cb) - все чайлды
 //findChild(id) - на parent (любой вложенности)
+//swap(id1, id2) - меняет местами двух чайлдов одного parent
 //renderElem(params = {}) - рисует иерархию чайлов
 
-сhildNode2.traverse((i) => console.log(i))
+// сhildNode2.traverse((i) => console.log(i))
 // сhildNode4.each((i) => console.log(i))
-rootNode.renderElem({
-    cb: (node) => {console.log(node)}
-})
+
+const cb = (node) => {console.log(node)}
+rootNode.renderElem({cb});
+
+
+rootNode.swap(3, 13);
+сhildNode2.swap(6, 7);
+rootNode.swap(2, 3);
+// rootNode.remove(3);
+
+clearRender();
+rootNode.renderElem({cb});

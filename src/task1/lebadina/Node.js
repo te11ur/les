@@ -63,6 +63,27 @@ export class Node {
         }
     }
 
+    swap(id1, id2){
+        let node1 = this.findChild(id1);
+        let node2 = this.findChild(id2);
+        if(!node1 || !node2) return;
+
+        let bufNode = {};
+        Object.assign(bufNode, node2)
+
+        node2.child = node1.child;
+        node1.child = bufNode.child;
+
+        Object.assign(node2, {id: node1.id})
+        Object.assign(node1, {id: bufNode.id})
+        // Object.assign(node2, node1)
+
+        // node1.next && (node1.next.prev = node2);
+        // node1.prev && (node1.prev.next = node2);
+        // node2.next && (node2.next.prev = node1);
+        // node2.prev && (node2.prev.next = node1);
+
+    }
     findChild(id) {
         if (this.id === id) return this;
 
@@ -89,6 +110,13 @@ export class Node {
         const child = this.findChild(id);
         if (!child) return;
 
+        if(child.child){
+            child.each((i) => {
+                let id = i.id;
+                i.parent.remove(id)
+            })
+        }
+
         if (child.parent && child.parent !== this) {
             child.parent.remove(id);
         } else {
@@ -101,6 +129,7 @@ export class Node {
             prev && (prev.next = next)
             next && (next.prev = prev)
         }
+
     }
 
     getHtml(params = {}) {
@@ -120,8 +149,9 @@ export class Node {
         elem.style.left = `${position.x}px`;
         elem.style.textAlign = 'center';
         elem.style.boxSizing = 'border-box';
+        elem.style.backgroundColor = '#CCCCCC';
         elem.innerText = this.id;
-        elem.addEventListener('click', () => cb(this));
+        cb && elem.addEventListener('click', () => cb(this));
 
         return elem;
     }
@@ -138,7 +168,7 @@ export class Node {
 
         if (this.next) {
             this.next.renderElem({
-                position: {x: position.x + width, y: position.y},
+                position: {x: position.x + width - 10, y: position.y},
                 width: width,
                 cb
             });
