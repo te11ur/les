@@ -22,11 +22,11 @@ export class Node {
 
       if (nextChild) {
         nextChild.prev = child;
-        child.next = nextChild;
+        child && (child.next = nextChild);
       }
 
       this.children = child;
-      child.parent = this;
+      child && (child.parent = this);
     });
   }
 
@@ -110,6 +110,21 @@ export class Node {
   }
 
   /**
+   * Apply function for all successors (descendants)
+   * @param {Function} fn - handler function
+   */
+  eachSuccessor(fn) {
+    if (!isFunction(fn)) {
+      throw Error('argument must be a function');
+    }
+
+    eachNode(this.children, (node) => {
+      fn(node);
+      if (node) node.eachSuccessor(fn);
+    });
+  }
+
+  /**
    * Revers childrens chain
    */
   reverseChildren() {
@@ -136,20 +151,22 @@ export class Node {
    * @param {Node} node1
    * @param {Node} node2
    */
-  swap(node1, node2) {
+  swap(node1, node2, options) {
     if (!(node1 instanceof Node && node1 instanceof Node)) {
       throw Error('both arguments should be instanceof Node');
     }
 
-    swapNodes(node1, node2);
+    swapNodes(node1, node2, options);
   }
 
   swapSelf(node) {
-    swapNodes(this, node);
+    swapNodes(this, node, { swapChildren: true });
   }
 }
 
-const swapNodes = (node1, node2) => {
+const swapNodes = (node1, node2, options = {}) => {
+  const { swapChildren = false } = options;
+
   const parent1 = node1.parent;
   const parent2 = node2.parent;
   if (parent1) parent1.children = node2;
@@ -157,12 +174,14 @@ const swapNodes = (node1, node2) => {
   node1.parent = parent2;
   node2.parent = parent1;
 
-  const children1 = node1.children;
-  const children2 = node2.children;
-  if (children1) children1.parent = node2;
-  if (children2) children2.parent = node1;
-  node2.children = children1;
-  node1.children = children2;
+  if (swapChildren) {
+    const children1 = node1.children;
+    const children2 = node2.children;
+    if (children1) children1.parent = node2;
+    if (children2) children2.parent = node1;
+    node2.children = children1;
+    node1.children = children2;
+  }
 
   const next1 = node1.next;
   const next2 = node2.next;
@@ -181,10 +200,11 @@ const swapNodes = (node1, node2) => {
 
 const eachNode = (firstNode, fn) => {
   let next = firstNode;
-  do {
+
+  while (next) {
     fn(next);
     next = next.next;
-  } while (next);
+  }
 };
 
 const getFirstSibling = (node) => {
