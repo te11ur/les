@@ -17,6 +17,8 @@ const сhildNode11 = new Node();//id 11
 const сhildNode12 = new Node();//id 12
 const сhildNode13 = new Node();//id 13
 
+
+rootNode.remove(4)
 //              1
 //          2             3
 //    5     6     7       4

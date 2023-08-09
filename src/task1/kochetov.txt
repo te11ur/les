@@ -1,0 +1,23 @@
+Kravchuk:
+     Понравились проверки в начале методов throw Error('argument must be a function')
+     Все вроде работает
+
+Lebadina:
+    + За интерфейс)
+    Много методов
+
+Lynko:
+    как я понял задание children должен ссылаться на ноду, а нода должна ссылаться на следующую ноду
+    children:
+    2: Node {name: 'Reshad', add: ƒ, remove: ƒ, each: ƒ, _updateChildren: ƒ, …}
+    3: Node {name: 'Aziz', add: ƒ, remove: ƒ, each: ƒ, _updateChildren: ƒ, …}
+    4: Node {name: 'Anton_P', add: ƒ, remove: ƒ, each: ƒ, _updateChildren: ƒ, …}
+
+    Метод _updateChildren - огонь
+
+Parfionov: 
+
+
+Resgul:
+
+
