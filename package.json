@@ -17,7 +17,10 @@
     "task1:lynko:prod": "webpack --mode production --config build/webpack.resources.js",
     "task1:lynko:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
-    "task1:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js"
+    "task1:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+    "task1:kochetov:prod": "webpack --mode production --config build/webpack.resources.js",
+    "task1:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js"
   },
   "repository": {
     "type": "git",
