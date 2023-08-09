@@ -7,14 +7,17 @@
   "scripts": {
     "task1:kalandarov:prod": "webpack --mode production --config build/webpack.resources.js",
     "task1:kalandarov:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
     "task1:resgul:prod": "webpack --mode production --config build/webpack.resources.js",
     "task1:resgul:dev": "webpack serve --mode development --config build/webpack.resources.js",
-    
+
     "task1:kravchuk:prod": "webpack --mode production --config build/webpack.resources.js",
     "task1:kravchuk:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
     "task1:lynko:prod": "webpack --mode production --config build/webpack.resources.js",
     "task1:lynko:dev": "webpack serve --mode development --config build/webpack.resources.js"
+
+    "task1:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js"
   },
   "repository": {
     "type": "git",
