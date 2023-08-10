@@ -1,7 +1,5 @@
-export default factWithlMemo();
-
-function factWithlMemo() {
-  let cache = [1];
+const factWithlMemo = () => {
+  const cache = [1];
 
   const calculate = (n) => {
     if (!cache[n]) {
@@ -12,4 +10,6 @@ function factWithlMemo() {
   };
 
   return calculate;
-}
+};
+
+export default factWithlMemo();
