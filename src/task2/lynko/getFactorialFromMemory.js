@@ -1,8 +1,7 @@
 
 const saveResult = (cb) => {
     let numbers = {};
-    return (...params) => {
-    let number = params[0];
+    return (number) => {
       if (number in numbers) {
         return numbers[number];
       } else {
