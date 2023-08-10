@@ -31,7 +31,7 @@
     "task2:lynko:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
     "task2:lebadina:prod": "webpack --mode production --config build/webpack.resources.js",
-    "task2:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js"
+    "task2:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
     "task2:kochetov:prod": "webpack --mode production --config build/webpack.resources.js",
     "task2:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js",
