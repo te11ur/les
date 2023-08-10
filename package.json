@@ -35,6 +35,8 @@
 
     "task2:kochetov:prod": "webpack --mode production --config build/webpack.resources.js",
     "task2:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+    "task2:kravchuk:dev": "webpack serve --mode development --config build/webpack.resources.js"
   },
   "repository": {
     "type": "git",
