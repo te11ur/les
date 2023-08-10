@@ -1,25 +1,25 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\mleba\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js task1:lebadina:dev
+  C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run task2:resgul:dev
 
 PATH: 
-  C:\Users\mleba\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\mleba\bin;C:\Python311\Scripts;C:\Python311;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\WORK\playable_ads\bin;C:\Program Files (x86)\7-Zip;C:\Users\mleba\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA 2023.1.2\bin;C:\Users\mleba\AppData\Roaming\npm;C:\Users\mleba\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mleba\AppData\Local\GitHubDesktop\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Python310\Scripts\;C:\Python310\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;D:\work\playable_ads\bin;C:\Program Files (x86)\7-Zip;C:\Program Files\dotnet\;C:\Program Files\CMake\bin;C:\Users\user\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\user\AppData\Local\Programs\Python\Python311\;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Users\user\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\user\AppData\Roaming\npm;D:\work\webAssembly\emsdk;D:\work\webAssembly\emsdk\node\14.18.2_64bit\bin;D:\work\webAssembly\emsdk\upstream\emscripten;C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin;
 
 Yarn version: 
   1.22.19
 
 Node version: 
-  18.16.0
+  16.14.0
 
 Platform: 
   win32 x64
 
 Trace: 
-  SyntaxError: C:\LERNING\les\package.json: Unexpected string in JSON at position 880
+  SyntaxError: D:\Resgul-prog\aziz_talking\les\package.json: Unexpected token } in JSON at position 2208
       at JSON.parse (<anonymous>)
-      at C:\Users\mleba\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
+      at C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
       at Generator.next (<anonymous>)
-      at step (C:\Users\mleba\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
-      at C:\Users\mleba\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+      at step (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
 
 npm manifest: 
   {
@@ -35,13 +35,33 @@ npm manifest:
       "task1:resgul:prod": "webpack --mode production --config build/webpack.resources.js",
       "task1:resgul:dev": "webpack serve --mode development --config build/webpack.resources.js",
   
+      "task1:parfionov:prod": "webpack --mode production --config build/webpack.resources.js",
+      "task1:parfionov:dev": "webpack serve --mode development --config build/webpack.resources.js",
+  
+  
       "task1:kravchuk:prod": "webpack --mode production --config build/webpack.resources.js",
       "task1:kravchuk:dev": "webpack serve --mode development --config build/webpack.resources.js",
   
       "task1:lynko:prod": "webpack --mode production --config build/webpack.resources.js",
-      "task1:lynko:dev": "webpack serve --mode development --config build/webpack.resources.js"
+      "task1:lynko:dev": "webpack serve --mode development --config build/webpack.resources.js",
   
-      "task1:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js"
+      "task1:lebadina:prod": "webpack --mode production --config build/webpack.resources.js",
+      "task1:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js",
+  
+      "task1:kochetov:prod": "webpack --mode production --config build/webpack.resources.js",
+      "task1:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js",
+  
+      "task2:lynko:prod": "webpack --mode production --config build/webpack.resources.js",
+      "task2:lynko:dev": "webpack serve --mode development --config build/webpack.resources.js",
+  
+      "task2:lebadina:prod": "webpack --mode production --config build/webpack.resources.js",
+      "task2:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js",
+  
+      "task2:kochetov:prod": "webpack --mode production --config build/webpack.resources.js",
+      "task2:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js",
+  
+      "task2:resgul:prod": "webpack --mode production --config build/webpack.resources.js",
+      "task2:resgul:dev": "webpack serve --mode development --config build/webpack.resources.js",
     },
     "repository": {
       "type": "git",
