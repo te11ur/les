@@ -44,7 +44,10 @@
     "task2:resgul:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
     "task2:yaroshyk:prod": "webpack --mode production --config build/webpack.resources.js",
-    "task2:yaroshyk:dev": "webpack serve --mode development --config build/webpack.resources.js"
+    "task2:yaroshyk:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+    "task2:kalandarov:prod": "webpack --mode production --config build/webpack.resources.js",
+    "task2:kalandarov:dev": "webpack serve --mode development --config build/webpack.resources.js"
   },
   "repository": {
     "type": "git",
