@@ -7,6 +7,7 @@ export class Node {
 	parent = null;
 	children = null;
 	last = null;
+	count = 0;
 
 	add(node) {
 		if (this === node.parent) {
@@ -30,6 +31,8 @@ export class Node {
 		if (!this.last) {
 			this.last = node;
 		}
+
+		this.count++;
 
 		return this;
 	}
@@ -60,6 +63,8 @@ export class Node {
 
 		node.prev = null;
 		node.next = null;
+
+		this.count--;
 
 		return this;
 	}
@@ -105,6 +110,37 @@ export class Node {
 			this.last = node2;
 		} else if (this.last === node2) {
 			this.last = node1;
+		}
+
+		return this;
+	}
+
+	revers(deep = true) {
+		if (this.children !== this.last) {
+			let node = this.children = this.last;
+			let p = node;
+			node = node.prev;
+
+			while (node !== null) {
+				const k = node.prev;
+				p.next = node;
+				node.prev = p;
+
+				if (k) {
+					p = node;
+				} else {
+					node.next = null;
+					this.last = node;
+				}
+
+				node = k;
+			}
+		}
+
+		if (deep) {
+			for (let node = this.children; node !== null; node = node.next) {
+				node.revers(deep);
+			}
 		}
 
 		return this;

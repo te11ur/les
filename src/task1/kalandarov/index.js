@@ -18,9 +18,17 @@ const trie = (root, ...levels) => {
 
 const root = new Node();
 
-trie(root, 2, 4, 10, 5);
+trie(root, 3, 2);
 
 //structure
+root.travers((node, depth) => {
+	console.log('-'.repeat(depth) + '>' + node.id);
+
+	return depth + 1;
+}, 0);
+
+root.revers();
+
 root.travers((node, depth) => {
 	console.log('-'.repeat(depth) + '>' + node.id);
 
