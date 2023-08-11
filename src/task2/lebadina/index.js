@@ -2,15 +2,19 @@ function calculator() {
     let mem = {};
     let memMax = 0;
 
-    this.getMem = () => mem;
-    this.clearMem = () => {
+    const clearMemory = () => {
         console.log('memory cleared')
         mem = {};
         memMax = 0
     };
 
-    this.getFactorial = (number) => {
+    return function getFactorial(number, clearMem = false) {
         console.time(`Execution Time ${number}`);
+
+        if(clearMem){
+            clearMemory()
+        }
+
         if(number <= 0) return;
 
         let n = memMax;
@@ -33,13 +37,12 @@ function calculator() {
     }
 }
 
-const c = new calculator();
-console.log(c.getFactorial(10000));
+const c = calculator();
+console.log(c(10000));
 
-console.log(c.getFactorial(10000));
+console.log(c(10000));
 
-c.clearMem();
-console.log(c.getFactorial(10000));
+console.log(c(10000, true));
 
 //на низкой производительности - замедление цп х6:
 //Execution Time 10000: 7.574951171875 ms
@@ -49,3 +52,4 @@ console.log(c.getFactorial(10000));
 // index.js:7 memory cleared
 // index.js:40 Execution Time 10000: 3.228271484375 ms
 // index.js:53 Infinity
+
