@@ -7,12 +7,7 @@ function createBase() {
   }
 }
 
-const saveDate = createBase();
-
-let i = 0;
-
 function getFactorial(value) {
-  console.log(`iter_${i}, value_${value}`);
   let sum = 1;
   const base = saveDate();
 
@@ -24,6 +19,7 @@ function getFactorial(value) {
   return sum;
 }
 
+const saveDate = createBase();
+console.log('factorial_4 = ' + getFactorial(4));
 console.log('factorial_5 = ' + getFactorial(5));
-console.log('factorial_6 = ' + getFactorial(6));
 console.log('factorial_3 = ' + getFactorial(3));
