@@ -4,17 +4,49 @@ export class Collection {
     sortFn = (a, b) => a - b;
 
     push(...args) {
-        this.value = this.sortedInsert(args);
+        this.value = this._sortedInsert(args);
         this.length = this.value.length;
 
         return this;
     }
 
-    setSortFn(fn) {
-        this.sortFn = fn;
+    pop() {
+        let elem = this.value[this.length - 1];
+        this.length = this.value.length--;
+        this.length--;
+
+        return elem;
     }
 
-    binarySearchIndex(array, value) {
+    shift() {
+        let elem = this.value[0];
+        for (let i = 0; i < this.length - 1; i++) {
+            this.value[i] = this.value[i + 1]
+        }
+        this.length = this.value.length--;
+        this.length--;
+
+        return elem;
+    }
+
+    setSortFn(fn) {
+        this.sortFn = fn;
+        const bufArr = this.value;
+        this.value = [];
+        this.push(...bufArr);
+        return this;
+    }
+
+    indexOf(value) {
+        for (let i = 0; i < this.length; i++) {
+            if (this.value[i] === value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    _binarySearchIndex(array, value) {
         let left = 0;
         let right = array.length - 1;
 
@@ -29,12 +61,12 @@ export class Collection {
         return left;
     }
 
-    sortedInsert(array) {
+    _sortedInsert(array) {
         const newArray = [...this.value];
         let length = newArray.length;
 
         for (const value of array) {
-            const insertionIndex = this.binarySearchIndex(newArray, value);
+            const insertionIndex = this._binarySearchIndex(newArray, value);
 
             for (let i = length; i > insertionIndex; i--) {
                 newArray[i] = newArray[i - 1];
@@ -47,12 +79,5 @@ export class Collection {
         return newArray;
     }
 
-    indexOf(value) {
-        for (let i = 0; i < this.length; i++) {
-            if (this.value[i] === value) {
-                return i;
-            }
-        }
-        return -1;
-    }
+
 }
