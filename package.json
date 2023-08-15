@@ -50,7 +50,10 @@
     "task2:kalandarov:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
     "task3:lynko:prod": "webpack --mode production --config build/webpack.resources.js",
-    "task3:lynko:dev": "webpack serve --mode development --config build/webpack.resources.js"
+    "task3:lynko:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+    "task3:kochetov:prod": "webpack --mode production --config build/webpack.resources.js",
+    "task3:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js",
   },
   "repository": {
     "type": "git",
