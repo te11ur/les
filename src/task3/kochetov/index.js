@@ -1,11 +1,18 @@
 class CustomArray {
 	length = 0;
 	data = {};
-
+	type = null;
 
 	push(value) {
-		this.data[this.length] = value;
+		if (!this._checkType(value)) {
+			return this;
+		}
+
+		const { data, length } = this;
+
+		data[length] = value;
 		this.length++;
+		this._bubbleSort();
 		return this.length;
 	}
 
@@ -20,21 +27,29 @@ class CustomArray {
 	}
 
 	unshift(value) {
+		const { type, data, length } = this;
+		if (!this._checkType(value)) {
+			return this;
+		}
+
 		const newData = {};
 		const index = 0;
 
-		if (this.data[index]) {
+		if (data[index]) {
 			newData[index] = value;
-			for (let i = 0; i < this.length; i++) {
-				newData[i + 1] = this.data[i];
+			for (let i = 0; i < length; i++) {
+				newData[i + 1] = data[i];
 			}
 			this.data = newData;
 		}
 
-		if (!this.data[index]) {
-			this.data[index] = value;
+		if (!data[index]) {
+			data[index] = value;
 		}
+
 		this.length++;
+		const sort = this._quickSort();
+		this.data = sort.data;
 	}
 
 	shift() {
@@ -59,23 +74,31 @@ class CustomArray {
 	}
 
 	concat(...collections) {
-		let index = 0;
-		const {
-			data,
-			length,
-		} = this;
-		console.log(collections);
+		const newCollection = this;
 
-		const newDate = { ...data };
-
-		while (collections[index]) {
-			newDate[length + index] = collections[index];
-			index++;
+		for (let k = 0; k < collections.length; k++) {
+			const collection = collections[k];
+			for (let i = 0; i < collection.length; i++) {
+				newCollection.push(collection.data[i]);
+			}
 		}
 
-		console.log(newDate);
-		return newDate;
+		return newCollection;
+	}
 
+	_checkType(value) {
+		const { type } = this;
+
+		if (!type) {
+			this.type = typeof value;
+		}
+
+		if (type && type !== typeof value) {
+			console.info(`You can only add a ${type}`);
+			return false;
+		}
+
+		return true;
 	}
 
 	_bubbleSort() {
@@ -94,48 +117,59 @@ class CustomArray {
 		return this.data;
 	}
 
-	_quickSort(arr) {
-		const { data, length } = arr;
+	_quickSort(collection = this) {
+		const { data, length } = collection;
+
 		if (length < 2) {
-			return arr;
+			return collection;
 		}
 
-		const head = { '0': data[0] };
+		const head = new CustomArray();
+		head.push(data[0]);
 		const leftPart = new CustomArray();
 		const rightPart = new CustomArray();
-		console.log(data);
 
 		for (let i = 1; i < length; i++) {
-			if (head[0] >= data[i]) {
+			if (head.data[0] >= data[i]) {
 				leftPart.push(data[i]);
 			} else {
 				rightPart.push(data[i]);
 			}
 		}
 
-
-		console.log(leftPart, rightPart);
-		leftPart.concat(head, rightPart);
-
 		const sortedLeft = this._quickSort(leftPart);
 		const sortedRight = this._quickSort(rightPart);
 
-		const result = new CustomArray();
-		result.concat(sortedLeft, head, sortedRight);
-		return result.data;
-		///return this._quickSort(leftPart).concat(head, rightPart)
+		return sortedLeft.concat(head, sortedRight);
 	}
-
 }
 
 
 const myArray = new CustomArray();
+myArray.unshift(50);
+myArray.unshift('asd');
 myArray.push(5);
 myArray.push(2);
 myArray.push(6);
 myArray.push(4);
 myArray.push(1);
+myArray.unshift(-50);
+myArray.push('456465');
 
-let aaa = myArray._quickSort(myArray);
+console.log(myArray);
 
-console.log(aaa);
+const secondArr = new CustomArray();
+secondArr.push('a');
+secondArr.push('v');
+secondArr.push('4');
+
+console.log(secondArr);
+
+const thirdArr = new CustomArray();
+
+thirdArr.push(true);
+thirdArr.push(true);
+thirdArr.push(false);
+thirdArr.push('fdsafdsa');
+
+console.log(thirdArr);
