@@ -9,7 +9,8 @@ export class Collection {
 
     //все элементы при добавлении разбиваются на 3 объекта по типу данных
     // length - общая величина всех элементов
-    //чтобы удалить элемент методами shift и pop нужно указать тип объекта
+    //чтобы удалить элемент методами shift и pop нужно указать тип элемента
+    //объекты сортируются по длине массива или если это массив, и по количеству ключей, если нет
     pop(type) {
         if(type !== 'number' && type !== 'string' && type !== 'object') {
             console.error('data type is not supported');
@@ -77,13 +78,32 @@ export class Collection {
                 this._sortHelper(this.elements[key]);
             }
             else if(key === "objects") {
-                this._sortHelperObj(this.elements[key]);
+                let helperArr = [];
+                this.elements[key].forEach((elem, index) => {
+                    let helperObj = {};
+                    helperObj.length = (Array.isArray(elem)) ? elem.length : Object.keys(elem).length;
+                    helperObj.object = elem;
+                    helperArr[index] = helperObj;
+                })
+                this._sortHelperObj(helperArr);
+                
+                this.elements[key].forEach((elem, index, array) => {
+                    this.elements[key][index] = helperArr[index].object;
+                })
+
             }
         }
     }
     _sortHelperObj(arr) {
-        
-        //Пока не доделал сортировку объектов))
+        for (let i = arr.length - 1; i > 0; i--) {
+            for (let j = 0; j < i; j++) {
+                if (arr[j].length > arr[j + 1].length) {
+                    let temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
     }
     _sortHelper(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
