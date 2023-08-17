@@ -61,7 +61,9 @@
     "task3:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
     "task3:kalandarov:prod": "webpack --mode production --config build/webpack.resources.js",
-    "task3:kalandarov:dev": "webpack serve --mode development --config build/webpack.resources.js"
+    "task3:kalandarov:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+    "task4:krauchuk:dev": "webpack serve --mode development --config build/webpack.resources.js"
   },
   "repository": {
     "type": "git",
