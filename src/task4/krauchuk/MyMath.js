@@ -43,8 +43,18 @@ export class MyMath {
   }
 
   @toPromise
+  static min(a, b) {
+    return a < b ? a : b;
+  }
+
+  @toPromise
+  static max(a, b) {
+    return a > b ? a : b;
+  }
+
+  @toPromise
   static clamp(val, min, max) {
-    return Math.min(Math.max(val, min), max);
+    return MyMath.min(MyMath.max(val, min), max);
   }
 
   @toPromise
@@ -59,15 +69,14 @@ export class MyMath {
 
   @toPromise
   static degToRad(degrees) {
-    return degrees * (Math.PI / 180);
+    return degrees * (MyMath.PI / 180);
   }
 
   @toPromise
   static radToDeg(radians) {
-    return radians * (180 / Math.PI);
+    return radians * (180 / MyMath.PI);
   }
 
-  @toPromise
   static distance(x1, y1, x2, y2) {
     const dx = x2 - x1;
     const dy = y2 - y1;
