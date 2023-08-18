@@ -15,9 +15,14 @@ class Math {
 
     @promise()
     sqrt(a) {
-        for (let i = 0; i <= a; i++) {
-            if (i * i === a) return i;
+        const resBufArr = [];
+        for (let i = 0; i <= a; i += 0.01) {
+            let res = i * i;
+            if (res > a - 0.5 && res < a + 0.5) {
+                resBufArr.push(i)
+            };
         }
+        return (resBufArr.reduce((sum, item) => sum + item, 0) / resBufArr.length).toFixed(4)
     }
 
     @promise()

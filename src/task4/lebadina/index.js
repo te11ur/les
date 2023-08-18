@@ -24,7 +24,7 @@ math.lerp(0, 50, 0.5)
         console.log(res)
     })
 
-math.sqrt(100)
+math.sqrt(40)
     .then((res) => {
         console.log(res)
 })
