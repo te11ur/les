@@ -2,7 +2,10 @@ import { MathCustom } from './MathCustom.js';
 
 const math = new MathCustom();
 
-console.log(math.pow(3, 2))
-	// .then((data) => {
-	// 	console.log(data);
-	// });
+math.pow(3, 2)
+	.then((data) => {
+		console.log(data);
+	});
+
+console.log(math.sum(1,2));
+

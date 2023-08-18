@@ -1,33 +1,41 @@
-const decorator = (func) => {
-	return function(...args) {
+// const decorator = (func) => {
+// 	return function(...args) {
+// 		return new Promise(resolve => {
+// 			let result = func.apply(this, args);
+// 			resolve(result);
+// 		})
+// 	}
+// }
+
+const promisify = (target, property, descriptor) => {
+	let func = descriptor.value;
+	descriptor.value = (...args) => {
 		return new Promise(resolve => {
-			let result = func.apply(this, args);
-			resolve(result);
+			const result = func.apply(this, args);
+			resolve(result)
 		})
 	}
 }
 
 export class MathCustom {
-	constructor() {
-		// декорирую методы?
-		for (let method in this) {
-			if (typeof(this[method]) === 'function') {
-				this[method] = decorator(this[method]);
-			}
-		}
-	}
+	PI=3.14;
 
+	@promisify
 	sum(a,b) {
 		return a + b;
 	}
+
+	@promisify
 	sub(a,b) {
 		return a - b;
 	}
 
+	@promisify
 	mul(a,b) {
 		return a * b;
 	}
 
+	@promisify
 	pow(a,b) {
 		return a ** b;
 	}
