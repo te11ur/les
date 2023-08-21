@@ -1,0 +1,18 @@
+onmessage = (e) => {
+  const { type } = e.data;
+
+  if (!type) return self.postMessage({ type: 'error', message: 'type is required' });
+
+  switch (type) {
+    case 'quote': {
+      fetch('https://quotes15.p.rapidapi.com/quotes/random/', {
+        headers: {
+          'X-RapidAPI-Key': '4540e1615emshe80a79e560acf3ep1ee15cjsn25ce01f4367d',
+          'X-RapidAPI-Host': 'quotes15.p.rapidapi.com',
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => self.postMessage({ type: type, data }));
+    }
+  }
+};
