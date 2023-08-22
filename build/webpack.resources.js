@@ -101,6 +101,7 @@ const getBuildConfig = (settings, options) => {
 		name: 'build',
 		target: 'web',
 		entry: `${path}/index.js`,
+		// entry: [`${path}/index.js`, `${path}/worker.js`],
 		output: {
 			publicPath: '',
 			path: resolve(release),
