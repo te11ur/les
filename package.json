@@ -73,7 +73,9 @@
 
     "task4:Parfionov:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
-    "task5:krauchuk:dev": "webpack serve --mode development --config build/webpack.resources.js"
+    "task5:krauchuk:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+    "task5:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js"
   },
   "repository": {
     "type": "git",
