@@ -1,7 +1,19 @@
-const myWorker = new Worker("./my_task.js");
+if (window.Worker) {
+  const worker = new Worker('./worker.js');
 
-myWorker.onmessage = function (oEvent) {
-	console.log("Worker said : " + oEvent.data);
-};
+  worker.onmessage = (e) => {
+    const { data } = e;
 
-myWorker.postMessage("ali");
+    if (data) {
+      console.log(data);
+    }
+  };
+
+  worker.onerror = (err) => {
+      console.log(err.message);
+  };
+
+  worker.postMessage('https://jsonplaceholder.typicode.com/todos/1');
+  // worker.postMessage('https://jsonplaceholder.typicode.com/todos/2000');
+}
+

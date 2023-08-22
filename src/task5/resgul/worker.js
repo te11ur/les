@@ -1,15 +1,10 @@
-function fib(n) {
-  return n <= 1 ? n : fib(n - 1) + fib(n - 2);
-}
+onmessage = (e) => {
+	const url = e.data;
 
-onmessage = function (e) {
-  console.log('внутри воркера');
-
-  const num = e.data;
-  if (Number.isInteger(parseInt(num))) {
-    const result = fib(num);
-    postMessage(result);
-  } else {
-   throw new Error('not a number')
-  }
-}
+	fetch(url)
+		.then(response => {
+			if (response.status === 404) throw new Error('status 404');
+			return response.json();
+		})
+		.then(data => postMessage(data));
+};
