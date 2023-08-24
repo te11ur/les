@@ -1,19 +1,12 @@
-let time = 100;
-
 const promise = () => {
-	const timeout = 1000 + time;
-	time += 200;
-
 	return (target, key, descriptor) => {
 		descriptor.writable = false;
 		let value = descriptor.value;
 
 		descriptor.value = (...args) => new Promise((resolve, reject) => {
 			console.log(args);
-			setTimeout(() => {
-				let res = value.apply(this, args);
-				resolve(res);
-			}, timeout);
+			let res = value.apply(this, args);
+			resolve(res);
 		});
 	};
 }
