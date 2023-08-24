@@ -87,7 +87,9 @@
 
     "task6:Parfionov:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
-    "task6:resgul:dev": "webpack serve --mode development --config build/webpack.resources.js"
+    "task6:resgul:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+    "task6:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js"
   },
   "repository": {
     "type": "git",
