@@ -1,10 +1,11 @@
-onmessage = (e) => {
-	const url = e.data;
+const worker_wrapper = () => {
+	onmessage = (e) => {
+		const url = e.data;
 
-	fetch(url)
-		.then(response => {
-			if (response.status === 404) throw new Error('status 404');
-			return response.json();
-		})
-		.then(data => postMessage(data));
+		fetch(url)
+			.then(response => response.json())
+			.then(data => postMessage(data));
+	};
 };
+
+export default worker_wrapper;
