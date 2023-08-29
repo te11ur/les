@@ -1,14 +1,34 @@
+const workerSrc = `
+   onmessage = async (e) => {
+    const canvasData = e.data.canvasData;
+    const imageData = e.data.imageData; 
+
+    const offscreenCanvas = new OffscreenCanvas(canvasData.width, canvasData.height);
+    const offscreenContext = offscreenCanvas.getContext('2d');
+
+    const imageBitmap = await createImageBitmap(imageData);
+    offscreenContext.drawImage(imageBitmap, 0, 0, offscreenCanvas.width, offscreenCanvas.height);
+
+    offscreenCanvas.convertToBlob().then(blob => {
+      const dataURL = new FileReaderSync().readAsDataURL(blob);
+      postMessage(dataURL);
+    })
+    
+};
+
+`
+
+
 const video = document.createElement('video');
-const canvas = document.createElement('canvas');
+const image = new Image();
+const url = URL.createObjectURL(new Blob([workerSrc]));
+
 const camera = window.navigator.mediaDevices
     .getUserMedia({video: true})
     .then(mediaStream => {
         video.srcObject = mediaStream;
         video.onloadedmetadata = (e) => {
             video.play();
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            btn.style.marginLeft = `${video.videoWidth / 2 - 75}px`;
         }
     });
 
@@ -16,29 +36,37 @@ const btn = document.createElement('div');
 btn.innerText = 'MAKE PHOTO';
 
 let state = 'video';
-const ctx = canvas.getContext("2d");
+
 btn.addEventListener('click', () => {
-    if(state === 'video') {
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
-        const img = canvas.toDataURL("image/png");
-        console.log(img)
+    if (state === 'video') {
+        const worker = new Worker(url);
+        worker.onmessage = (e) => {
+            image.src = e.data;
+        };
+
+        const canvasData = { width: video.videoWidth, height: video.videoHeight };
+        createImageBitmap(video)
+            .then(imageBitmap => {
+            worker.postMessage({ canvasData, imageData: imageBitmap }, [imageBitmap]);
+        });
+
         btn.innerText = 'TRY AGAIN'
         state = 'image'
     } else {
         state = 'video';
         btn.innerText = 'MAKE PHOTO';
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        image.src = '';
     }
 })
 
 
 document.body.append(video);
 document.body.append(btn);
-document.body.append(canvas);
+document.body.append(image);
 
 document.body.style.position = 'relative';
-canvas.style.position = 'absolute';
-canvas.style.top = '0px';
+image.style.position = 'absolute';
+image.style.top = '0px';
 btn.style.width = '150px';
 btn.style.height = '50px';
 btn.style.border = '1px solid green';
