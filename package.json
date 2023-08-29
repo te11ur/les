@@ -93,11 +93,15 @@
 
     "task6:krauchuk:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
+    "task6:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
     "task7:krauchuk:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
     "task7:resgul:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
-    "task7:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js"
+    "task7:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+    "task7:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js"
   },
   "repository": {
     "type": "git",
