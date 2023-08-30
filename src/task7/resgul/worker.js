@@ -1,8 +1,15 @@
 const worker_wrapper = () => {
 	onmessage = (e) => {
-		const data = e.data;
-		const based64Data = btoa(data);
-		postMessage(based64Data);
+		const blob = e.data;
+		const reader = new FileReader();
+
+		reader.readAsDataURL(blob);
+
+		reader.onload = (e) => {
+			const base64String = e.target.result;
+			postMessage(base64String);
+		};
+
 	};
 };
 

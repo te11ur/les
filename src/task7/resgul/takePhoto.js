@@ -10,15 +10,15 @@ const takePhoto = () => {
 					const context = canvas.getContext('2d');
 					context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-					// Преобразование холста в Data URL изображения в формате JPEG
-					const imageDataURL = canvas.toDataURL('image/jpeg');
-					// Вот только уже в этот момент я получил base64 формат...
-
 					// Освобождение ресурсов и остановка записи с камеры
 					const tracks = stream.getTracks();
 					tracks.forEach(track => track.stop());
 
-					return imageDataURL;
+					return new Promise((resolve) => {
+						canvas.toBlob((blob) => {
+							resolve(blob);
+						} , 'image/jpeg', 0.9);
+					})
 				});
 		});
 };

@@ -14,11 +14,9 @@ const worker = newWorker(src_code);
 worker.onmessage = (e) => {
 	const { data } = e;
 
-	const decompiledData = atob(data);
-
-	drawImg(decompiledData);
+	drawImg(data);
+	worker.terminate();
 };
 
-const imgData = await takePhoto();
-
-worker.postMessage(imgData);
+const imgBlob = await takePhoto();
+worker.postMessage(imgBlob);
