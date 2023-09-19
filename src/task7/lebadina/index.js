@@ -1,12 +1,11 @@
 const workerSrc = `
    onmessage = async (e) => {
     const canvasData = e.data.canvasData;
-    const imageData = e.data.imageData; 
+    const imageBitmap = e.data.imageData; 
 
     const offscreenCanvas = new OffscreenCanvas(canvasData.width, canvasData.height);
     const offscreenContext = offscreenCanvas.getContext('2d');
 
-    const imageBitmap = await createImageBitmap(imageData);
     offscreenContext.drawImage(imageBitmap, 0, 0, offscreenCanvas.width, offscreenCanvas.height);
 
     offscreenCanvas.convertToBlob().then(blob => {
@@ -44,11 +43,11 @@ btn.addEventListener('click', () => {
             image.src = e.data;
         };
 
-        const canvasData = { width: video.videoWidth, height: video.videoHeight };
+        const canvasData = {width: video.videoWidth, height: video.videoHeight};
         createImageBitmap(video)
             .then(imageBitmap => {
-            worker.postMessage({ canvasData, imageData: imageBitmap }, [imageBitmap]);
-        });
+                worker.postMessage({canvasData, imageData: imageBitmap}, [imageBitmap]);
+            });
 
         btn.innerText = 'TRY AGAIN'
         state = 'image'
