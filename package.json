@@ -101,7 +101,9 @@
 
     "task7:lebadina:dev": "webpack serve --mode development --config build/webpack.resources.js",
 
-    "task7:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js"
+    "task7:kochetov:dev": "webpack serve --mode development --config build/webpack.resources.js",
+
+    "task8:parfionau:dev": "webpack serve --mode development --config build/webpack.resources.js"
   },
   "repository": {
     "type": "git",
